@@ -101,6 +101,12 @@ This command will do the following:
    2. Create or update the Game.ini file with the settings provided in the `docker-compose.yaml` file
 5. Start the Longvinter server
 
+## Stopping the container
+To stop the container, run the command below. Note that this removes the container from Docker, but the save data will be saved in the `data` directory and will be loaded when the server is started again next time.
+```shell
+docker-compose down
+```
+
 ## Updating the container
 When a new version of the container is released, make sure to update the files using `git pull`, or manually update the files by downloading the code as ZIP from Github. Run the command below to build the new container image and restart the container.
 ```shell

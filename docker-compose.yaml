@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  longvinter-server:
+    container_name: "longvinter-server"
+    build: .
+    ports:
+      - "7777:7777"
+      - "27016:27016"
+    environment:
+      CFG_SERVER_NAME: "Unnamed Island"
+      CFG_MAX_PLAYERS: "32"
+      CFG_SERVER_MOTD: "Welcome to Longvinter Island!"
+      CFG_PASSWORD: ""
+      CFG_COMMUNITY_WEBSITE: "www.longvinter.com"
+      CFG_ADMIN_STEAM_ID: ""
+      CFG_ENABLE_PVP: "true"
+      CFG_GAME_PORT: "7777"
+      CFG_QUERY_PORT: "27016"
+    volumes:
+      - "./data:/data/longvinter-linux-server"
+    restart: always
+    network_mode: bridge

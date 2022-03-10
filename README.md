@@ -129,3 +129,8 @@ The command above will download the container files in a directory named `new-na
 
 ## Portforwarding and firewalls
 When running the container it might be necessary to do port forwarding or open ports in your firewall. For port forwarding instructions, please refer to the information/documentation provided by your ISP or router/modem manufacturer. For opening ports in your software firewall use the `Windows Firewall with Advanced Security` tool for Windows systems. For Linux based systems you can use the ufw or iptables tools. Please refer to their official documentation for instructions.
+
+**Please do not create issues on Github for problems related to port forwarding or firewalls.**
+
+# Disclaimer
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

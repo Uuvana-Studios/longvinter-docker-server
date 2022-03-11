@@ -4,8 +4,10 @@ services:
     container_name: "longvinter-server"
     build: .
     ports:
-      - "7777:7777"
-      - "27016:27016"
+      - "7777:7777/tcp"
+      - "7777:7777/udp"
+      - "27016:27016/tcp"
+      - "27016:27016/udp"
     environment:
       CFG_SERVER_NAME: "Unnamed Island"
       CFG_MAX_PLAYERS: "32"

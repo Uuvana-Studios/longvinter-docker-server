@@ -74,8 +74,10 @@ environment:
 In order to run the server with different port numbers than the default ports `7777` and `27016`, the new port numbers have to be edited in two places in the `docker-compose.yaml` file. 
 ```shell
 ports:
-  - "7777:7777"
-  - "27016:27016"
+  - "7777:7777/tcp"
+  - "7777:7777/udp"
+  - "27016:27016/tcp"
+  - "27016:27016/udp"
 ```
 
 ```
@@ -83,8 +85,6 @@ environment:
   CFG_GAME_PORT: "7777"
   CFG_QUERY_PORT: "27016"
 ```
-
-**NOTE: Even though changing the ports is possible, it is currently not supported by the game!**
 
 ## Starting the container
 When the setup and configuration is done, the container is ready to be started. Open the command line and navigate to the directory (using the `cd` command) that contains the `Dockerfile`, `docker-compose.yaml` and `run.sh` files.
@@ -128,8 +128,6 @@ Running multiple Longvinter containers on one Docker server is very easy. Follow
 git clone https://github.com/tvandoorn/longvinter-docker-server.git new-name-here
 ```
 The command above will download the container files in a directory named `new-name-here`. Make sure to change the server ports using the _Changing the port numbers_ step.
-
-**NOTE: Even though changing the ports is possible, it is currently not supported by the game!**
 
 ## Portforwarding and firewalls
 When running the container it might be necessary to do port forwarding or open ports in your firewall. For port forwarding instructions, please refer to the information/documentation provided by your ISP or router/modem manufacturer. For opening ports in your software firewall use the `Windows Firewall with Advanced Security` tool for Windows systems. For Linux based systems you can use the ufw or iptables tools. Please refer to their official documentation for instructions.

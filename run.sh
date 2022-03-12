@@ -27,7 +27,8 @@ fi
 # Check if the Github repo has been cloned before, do so if not the case
 if [ ! -d "$DATA_DIR/$GIT_REPO_NAME" ]; then
     echo "Server directory missing, creating it..."
-    mkdir $DATA_DIR/$GIT_REPO_NAME
+    ls -la $DATA_DIR
+    mkdir -p $DATA_DIR/$GIT_REPO_NAME
 fi
 
 if [ ! -d "$DATA_DIR/$GIT_REPO_NAME/.git" ]; then
@@ -78,4 +79,4 @@ echo "PVP=$CFG_ENABLE_PVP" >> $CONFIG_FILE_FULL_PATH
 
 echo "Setup done, starting the server..."
 cd $DATA_DIR
-sh "$GIT_REPO_NAME/LongvinterServer.sh" -log -Port=$CFG_GAME_PORT -QueryPort=$CFG_QUERY_PORT
+sh "$GIT_REPO_NAME/LongvinterServer.sh" -Port=$CFG_GAME_PORT -QueryPort=$CFG_QUERY_PORT

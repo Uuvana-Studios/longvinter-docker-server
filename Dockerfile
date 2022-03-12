@@ -41,7 +41,7 @@ RUN ./steamcmd.sh +force_install_dir . +login anonymous +app_update 1007 +quit
 
 # Link 64-bit binaries (this may not even be necessary?)
 RUN mkdir -p $HOME/.steam/sdk64 && \
-    ln -s $HOME/linux64/steamclient.so $HOME/.steam/sdk64/
+    ln -s $HOME/steamcmd/linux64/steamclient.so $HOME/.steam/sdk64/
 
 WORKDIR $HOME
 EXPOSE 7777 27015 27016

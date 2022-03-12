@@ -27,7 +27,6 @@ fi
 # Check if the Github repo has been cloned before, do so if not the case
 if [ ! -d "$DATA_DIR/$GIT_REPO_NAME" ]; then
     echo "Server directory missing, creating it..."
-    ls -la $DATA_DIR
     mkdir -p $DATA_DIR/$GIT_REPO_NAME
 fi
 

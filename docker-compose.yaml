@@ -2,6 +2,7 @@ version: "3.7"
 services:
   longvinter-server:
     container_name: longvinter-server
+    image: longvinter-linux-server
     build: .
     ports:
       - "7777:7777/tcp"

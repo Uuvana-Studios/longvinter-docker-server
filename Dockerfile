@@ -44,7 +44,7 @@ RUN mkdir -p $HOME/.steam/sdk64 && \
     ln -s $HOME/steamcmd/linux64/steamclient.so $HOME/.steam/sdk64/
 
 WORKDIR $HOME
-EXPOSE 7777 27015 27016
+EXPOSE 7777 27016
 
 ENTRYPOINT ["/bin/bash"]
 CMD ["./run.sh"]

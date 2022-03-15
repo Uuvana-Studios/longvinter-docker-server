@@ -32,14 +32,46 @@ To download the container configuration using git, use the command below:
 git clone https://github.com/tvandoorn/longvinter-docker-server.git
 ```
 
-### Creating the data directory
-In order to keep game progress between container restarts a `data` directory needs to be created. Create this directory in the same directory as the `docker-compose.yaml` file.
+### Setting up the data directory
+In order to keep game progress between container restarts a `data` directory needs to be supplied to the container.
 
-When using Ubuntu, use the following commands to create the directory and set the appropriate rights.
+There are two ways to accomplish this:
+
+#### Using a Docker Volume
+This is the default setting in the`docker-compose.yaml` file and no action is required by you. This will create the `longvinter_data` volume automatically.
+
+Where does this actually persist the data?
+```
+docker volume inspect longvinter_data
+...
+"Mountpoint": "/var/lib/docker/volumes/longvinter_data/_data"
+...
+```
+
+**NOTE:** If you are running multiple Longvinter servers on the same Docker host, you will need to rename the volume within `docker-compose.yaml` file:
+```
+volumes:
+  longvinter_data:
+    name: longvinter_data_two
+```
+
+#### Creating a local data directory
+If you do not want to use the Docker volume approach, you can manually create a data directory and mount it.
+Create this directory in the same directory as the `docker-compose.yaml` file.
+
+When using Ubuntu, use the following commands to create the directory and set the appropriate rights. The `steam` user is ID `1000` within the container.
 ```shell
 mkdir data
-chown -R 1200:1200 data/
+chown -R 1000:1000 data/
 ```
+
+Then update the `docker-compose file` by removing the`volumes` section at the end and update the service definition:
+```
+ volumes:
+   - data:/data
+```
+
+This makes it easier to install mods, create/restore backups, and work with local data files.
 
 ### Configuring the server settings
 The server settings can be changed by opening the `docker-compose.yaml` file. Settings that may be changed are shown below:

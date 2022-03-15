@@ -2,9 +2,19 @@
 Docker config for setting up a Longvinter server
 
 ## System requirements
-This Docker container runs on any OS that supports Docker, provided it has an Intel or AMD processor. Docker for ARM or Apple Silicon does not work since SteamCMD does not appear to support these platforms. Also make sure the requirements described in the official server repo are met as well: https://github.com/Uuvana-Studios/longvinter-linux-server. Note that you do not have to install anything other than Docker and Docker Compose on the system that will run this container. However, it is recommended to use Git to download and update the configuration in this Github repository.
+This Docker container runs on any OS that supports Docker, provided it has an Intel or AMD processor.
+Docker for ARM or Apple Silicon does not work since SteamCMD does not appear to support these platforms.
 
-Note: Using this Docker container setup requires knowledge about how Docker works. Basic knowledge of the command line may also be required.
+Also make sure the requirements described in the official server repo are met as well: https://github.com/Uuvana-Studios/longvinter-linux-server.
+
+### Prerequisites
+- Docker
+- Docker Compose
+- Git (optional)
+
+It is recommended to use Git to download and update the configuration in this Github repository.
+
+**NOTE:** Using this Docker container setup requires knowledge about how Docker works. Basic knowledge of the command line may also be required.
 
 ## Install Docker
 
@@ -48,15 +58,10 @@ docker volume inspect longvinter_data
 ...
 ```
 
-**NOTE:** If you are running multiple Longvinter servers on the same Docker host, you will need to rename the volume within `docker-compose.yaml` file:
-```
-volumes:
-  longvinter_data:
-    name: longvinter_data_two
-```
+**NOTE:** The volume will not exist until the container is started at least once via `docker-compose up`.
 
 #### Creating a local data directory
-If you do not want to use the Docker volume approach, you can manually create a data directory and mount it.
+If you do **not** want to use the Docker volume approach, you can manually create a data directory and mount it.
 Create this directory in the same directory as the `docker-compose.yaml` file.
 
 When using Ubuntu, use the following commands to create the directory and set the appropriate rights. The `steam` user is ID `1000` within the container.
@@ -65,7 +70,7 @@ mkdir data
 chown -R 1000:1000 data/
 ```
 
-Then update the `docker-compose file` by removing the`volumes` section at the end and update the service definition:
+Then update the `docker-compose file` by removing the`volumes` section at the bottom and update the service definition:
 ```
  volumes:
    - data:/data
@@ -160,6 +165,13 @@ Running multiple Longvinter containers on one Docker server is very easy. Follow
 git clone https://github.com/tvandoorn/longvinter-docker-server.git new-name-here
 ```
 The command above will download the container files in a directory named `new-name-here`. Make sure to change the server ports using the _Changing the port numbers_ step.
+
+**NOTE:** If you are running multiple Longvinter servers on the same Docker host, you will need to rename the volume within `docker-compose.yaml` file:
+```
+volumes:
+  longvinter_data:
+    name: longvinter_data_two
+```
 
 ## Portforwarding and firewalls
 When running the container it might be necessary to do port forwarding or open ports in your firewall. For port forwarding instructions, please refer to the information/documentation provided by your ISP or router/modem manufacturer. For opening ports in your software firewall use the `Windows Firewall with Advanced Security` tool for Windows systems. For Linux based systems you can use the ufw or iptables tools. Please refer to their official documentation for instructions.

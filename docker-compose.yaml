@@ -1,8 +1,14 @@
-version: "3.8"
+version: "3.7"
 services:
   longvinter-server:
-    container_name: "longvinter-server"
+    container_name: longvinter-server
+    image: longvinter-linux-server
     build: .
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     ports:
       - "7777:7777/tcp"
       - "7777:7777/udp"
@@ -19,6 +25,10 @@ services:
       CFG_GAME_PORT: "7777"
       CFG_QUERY_PORT: "27016"
     volumes:
-      - "./data:/data/longvinter-linux-server"
-    restart: always
-    network_mode: bridge
+      - longvinter_data:/data
+    restart: unless-stopped
+
+volumes:
+  longvinter_data:
+    name: longvinter_data
+  

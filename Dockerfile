@@ -1,38 +1,50 @@
-FROM ubuntu:20.04
+FROM debian:buster-slim
 
-EXPOSE 7777 27016
-
+# Install necessary linux packages
 RUN apt-get update && \
-    apt-get install --no-install-recommends --no-install-suggests -y git git-lfs wget ca-certificates lib32gcc1
+    apt-get install --no-install-recommends --no-install-suggests -y \
+      git \
+      git-lfs  \
+      wget \
+      ca-certificates \
+      lib32gcc1
 
-RUN mkdir -p /data/steamcmd
+# Steam user variables  
+ENV UID 1000
+ENV USER steam
+ENV HOME /home/$USER
 
-RUN mkdir /data/steamsdk
+# Create the steam user and data directory
+RUN adduser --disabled-password --gecos '' -u $UID $USER && \
+    mkdir -p /data
 
-ADD run.sh /data/run.sh
+# Copy all necessary scripts
+WORKDIR $HOME
+COPY run.sh .
 
-RUN chmod +x /data/run.sh
+# Set scripts as executable and set ownership of home/data directories
+RUN chmod +x run.sh && \
+    chown -R $USER:$USER /home/$USER && \
+    chown -R $USER:$USER /data
 
-RUN adduser --disabled-password --gecos '' -u 1200 app
-
-RUN chown -R app:app /data
-
-USER app
-
-WORKDIR /data/steamcmd
-
-RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
+# Install the SteamCMD as the steam user
+USER steam
+WORKDIR $HOME
+RUN mkdir -p steamcmd && cd steamcmd && \
+    wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
     tar -xvzf steamcmd_linux.tar.gz && \
     rm steamcmd_linux.tar.gz
 
-RUN ./steamcmd.sh +force_install_dir /data/steamsdk +login anonymous +app_update 1007 +quit
+# Install the Steam SDK
+WORKDIR $HOME/steamcmd
+RUN ./steamcmd.sh +force_install_dir . +login anonymous +app_update 1007 +quit
 
-RUN mkdir -p /home/app/.steam/sdk64
+# Link 64-bit binaries (this may not even be necessary?)
+RUN mkdir -p $HOME/.steam/sdk64 && \
+    ln -s $HOME/steamcmd/linux64/steamclient.so $HOME/.steam/sdk64/
 
-RUN cp /data/steamsdk/linux64/steamclient.so /home/app/.steam/sdk64/
+WORKDIR $HOME
+EXPOSE 7777 27016
 
-WORKDIR /data
-
-ENV HOME /home/app
-
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["/bin/bash"]
+CMD ["./run.sh"]

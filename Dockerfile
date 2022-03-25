@@ -1,4 +1,4 @@
-FROM i386/alpine:3.15.2
+FROM alpine:3.15.2
 
 # Install necessary linux packages
 RUN apk update && apk add --no-cache --virtual build-deps git git-lfs wget ca-certificates tar gcompat bash libgcc

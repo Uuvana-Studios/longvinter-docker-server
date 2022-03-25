@@ -22,6 +22,8 @@ services:
       CFG_COMMUNITY_WEBSITE: "www.longvinter.com"
       CFG_ADMIN_STEAM_ID: ""
       CFG_ENABLE_PVP: "true"
+      CFG_TENT_DECAY: "true"
+      CFG_MAX_TENTS: "2"
       CFG_GAME_PORT: "7777"
       CFG_QUERY_PORT: "27016"
     volumes:

@@ -75,6 +75,8 @@ echo "CommunityWebsite=$CFG_COMMUNITY_WEBSITE" >> $CONFIG_FILE_FULL_PATH
 echo "[/Game/Blueprints/Server/GM_Longvinter.GM_Longvinter_C]" >> $CONFIG_FILE_FULL_PATH
 echo "AdminSteamID=$CFG_ADMIN_STEAM_ID" >> $CONFIG_FILE_FULL_PATH
 echo "PVP=$CFG_ENABLE_PVP" >> $CONFIG_FILE_FULL_PATH
+echo "TentDecay=$CFG_TENT_DECAY" >> $CONFIG_FILE_FULL_PATH
+echo "MaxTents=$CFG_MAX_TENTS" >> $CONFIG_FILE_FULL_PATH
 
 echo "Setup done, starting the server..."
 cd $DATA_DIR

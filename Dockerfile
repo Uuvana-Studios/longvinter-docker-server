@@ -1,7 +1,7 @@
 FROM i386/alpine:3.15.2
 
 # Install necessary linux packages
-RUN apk update && apk add --no-cache --virtual build-deps git git-lfs wget ca-certificates tar gcompat bash 
+RUN apk update && apk add --no-cache --virtual build-deps git git-lfs wget ca-certificates tar gcompat bash lib32gcc1
 
 # Steam user variables  
 ENV UID 1000

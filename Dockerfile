@@ -10,7 +10,7 @@ ENV HOME /home/$USER
 
 # Create the steam user and data directory
 RUN adduser --disabled-password --gecos '' -u $UID $USER && \
-    mkdir -p /data && dpkg --add-architecture i386
+    mkdir -p /data 
 
 # Copy all necessary scripts
 WORKDIR $HOME

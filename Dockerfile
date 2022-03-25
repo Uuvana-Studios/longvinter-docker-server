@@ -1,13 +1,7 @@
 FROM alpine:3.15.2
 
 # Install necessary linux packages
-RUN apk update && \
-    apk --no-cache --virtual -y \
-      git \
-      git-lfs  \
-      wget \
-      ca-certificates \
-      lib32gcc1
+RUN apk update && apk add --no-cache --virtual build-deps git git-lfs wget ca-certificates lib32gcc1
 
 # Steam user variables  
 ENV UID 1000
@@ -46,5 +40,5 @@ RUN mkdir -p $HOME/.steam/sdk64 && \
 WORKDIR $HOME
 EXPOSE 7777 27016
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/sh"]
 CMD ["./run.sh"]

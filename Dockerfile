@@ -1,8 +1,8 @@
-FROM debian:buster-slim
+FROM alpine:3.15.2
 
 # Install necessary linux packages
-RUN apt-get update && \
-    apt-get install --no-install-recommends --no-install-suggests -y \
+RUN apk update && \
+    apk --no-cache --virtual -y \
       git \
       git-lfs  \
       wget \

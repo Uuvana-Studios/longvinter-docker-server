@@ -1,7 +1,7 @@
 FROM alpine:3.15.2
 
 # Install necessary linux packages
-RUN apk update && apk add --no-cache --virtual build-deps git git-lfs wget ca-certificates tar libgcc bash
+RUN apk update && apk add --arch x86 --no-cache --virtual build-deps git git-lfs wget ca-certificates tar libgcc bash 
 
 # Steam user variables  
 ENV UID 1000
@@ -10,7 +10,7 @@ ENV HOME /home/$USER
 
 # Create the steam user and data directory
 RUN adduser --disabled-password --gecos '' -u $UID $USER && \
-    mkdir -p /data
+    mkdir -p /data && dpkg --add-architecture i386
 
 # Copy all necessary scripts
 WORKDIR $HOME

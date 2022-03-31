@@ -90,6 +90,8 @@ The server settings can be changed by opening the `docker-compose.yaml` file. Se
 | CFG_COMMUNITY_WEBSITE | When the server or community has a website, enter it here to display it to the player.                                                                                                                                                         | www.longvinter.com            |
 | CFG_ADMIN_STEAM_ID    | Add the SteamID64 values for the players that have admin rights to this setting. When there are multiple admins, add the SteamID64 values to this setting separated by a space.                                                                | _(empty)_                     |
 | CFG_ENABLE_PVP        | When this setting is set to "true", PvP will be enabled on the server. Set to "false" to disable PvP.                                                                                                                                          | true                          |
+| CFG_TENT_DECAY        | When this setting is set to "true", tents will decay and be destroyed after 48 hours unless they are upgraded to a house.                                                                                                                      | true                          |
+| CFG_MAX_TENTS         | Maximum number of tents/houses each player can have placed in the world at a time.                                                                                                                                                             | 2                             |
 | CFG_GAME_PORT         | This setting is used to change the game port when multiple servers are running on the same (public) IP address. When changing this setting, make sure to also change the port number under the ports section of the docker-compose.yaml file.  | 7777                          |
 | CFG_QUERY_PORT        | This setting is used to change the query port when multiple servers are running on the same (public) IP address. When changing this setting, make sure to also change the port number under the ports section of the docker-compose.yaml file. | 27016                         |
 
@@ -103,6 +105,8 @@ environment:
   CFG_COMMUNITY_WEBSITE: "www.longvinter.com"
   CFG_ADMIN_STEAM_ID: ""
   CFG_ENABLE_PVP: "true"
+  CFG_TENT_DECAY: "true"
+  CFG_MAX_TENTS: "2"
   CFG_GAME_PORT: "7777"
   CFG_QUERY_PORT: "27016"
 ```

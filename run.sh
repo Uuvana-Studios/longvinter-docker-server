@@ -44,7 +44,8 @@ fi
 # Get the latest code changes from the Github repo
 echo "Updating repository..."
 cd $DATA_DIR/$GIT_REPO_NAME
-git restore .
+git checkout .
+git stash
 git pull $GIT_REPO_URL $GIT_REPO_BRANCH
 
 CONFIG_FILE_FULL_PATH="$DATA_DIR/$GIT_REPO_NAME/$SERVER_CONFIG_PATH"

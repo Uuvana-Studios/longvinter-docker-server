@@ -9,6 +9,7 @@ SERVER_CONFIG_PATH="Longvinter/Saved/Config/LinuxServer/Game.ini"
 
 # Default server settings (do not edit these, use environment variables to override)
 DEFAULT_CFG_SERVER_NAME="Unnamed Island"
+DEFAULT_CFG_SERVER_TAG="Default"
 DEFAULT_CFG_MAX_PLAYERS=32
 DEFAULT_CFG_SERVER_MOTD="Welcome to Longvinter Island!"
 DEFAULT_CFG_PASSWORD=""
@@ -58,6 +59,7 @@ fi
 echo "Preparing config variables..."
 # Check if default config was overridden for one or more settings. If not use the defaults above.
 if [ -z "$CFG_SERVER_NAME" ]; then CFG_SERVER_NAME=$DEFAULT_CFG_SERVER_NAME; fi
+if [ -z "$CFG_SERVER_TAG" ]; then CFG_SERVER_TAG=$DEFAULT_CFG_SERVER_TAG; fi
 if [ -z "$CFG_MAX_PLAYERS" ]; then CFG_MAX_PLAYERS=$DEFAULT_CFG_MAX_PLAYERS; fi
 if [ -z "$CFG_SERVER_MOTD" ]; then CFG_SERVER_MOTD=$DEFAULT_CFG_SERVER_MOTD; fi
 if [ -z "$CFG_PASSWORD" ]; then CFG_PASSWORD=$DEFAULT_CFG_PASSWORD; fi
@@ -74,6 +76,7 @@ echo "Setting config variables..."
 # Note that the line directly below this one overwrites the file and its contents (using a single > instead of >>).
 echo "[/Game/Blueprints/Server/GI_AdvancedSessions.GI_AdvancedSessions_C]" > $CONFIG_FILE_FULL_PATH
 echo "ServerName=$CFG_SERVER_NAME" >> $CONFIG_FILE_FULL_PATH
+echo "ServerTag=$CFG_SERVER_TAG" >> $CONFIG_FILE_FULL_PATH
 echo "MaxPlayers=$CFG_MAX_PLAYERS" >> $CONFIG_FILE_FULL_PATH
 echo "ServerMOTD=$CFG_SERVER_MOTD" >> $CONFIG_FILE_FULL_PATH
 echo "Password=$CFG_PASSWORD" >> $CONFIG_FILE_FULL_PATH

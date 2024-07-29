@@ -84,6 +84,7 @@ The server settings can be changed by opening the `docker-compose.yaml` file. Se
 | Setting name          | Used for                                                                                                                                                                                                                                       | Default value                 |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | CFG_SERVER_NAME       | Setting the server name that is displayed in the server list.                                                                                                                                                                                  | Unnamed Island                |
+| CFG_SERVER_TAG         | It's the tag that allows for easier search of the server. Please don't use your the word OFFICIAL on it. We want players to clearly know if they are joining a server that is hosted by other players. And only place one tag.                                                                                                                                                             | Default                             |
 | CFG_MAX_PLAYERS       | The maximum amount of players the server will allow at the same time.                                                                                                                                                                          | 32                            |
 | CFG_SERVER_MOTD       | A Message Of The Day that will be displayed to the player.                                                                                                                                                                                     | Welcome to Longvinter Island! |
 | CFG_PASSWORD          | Use this setting to require a password to join the server.                                                                                                                                                                                     | _(empty)_                     |
@@ -99,6 +100,7 @@ With the default values above, the environment part of the `docker-compose.yaml`
 ```shell
 environment:
   CFG_SERVER_NAME: "Unnamed Island"
+  CFG_SERVER_TAG: "Default"
   CFG_MAX_PLAYERS: "32"
   CFG_SERVER_MOTD: "Welcome to Longvinter Island!"
   CFG_PASSWORD: ""
